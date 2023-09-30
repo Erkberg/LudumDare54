@@ -7,6 +7,7 @@
 
 [node name="Limit" type="Node2D" node_paths=PackedStringArray("area")]
 script = ExtResource("1_pjavk")
+minDuration = 2.0
 area = NodePath("Area2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

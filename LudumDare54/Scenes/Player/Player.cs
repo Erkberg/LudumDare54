@@ -67,7 +67,7 @@ public partial class Player : CharacterBody2D
     private void OnAreaEntered(Area2D other)
     {
         Node otherParent = other.GetParent();
-        if (otherParent is Limit)
+        if (otherParent is Limit && !isDashing)
         {
             Die();
         }

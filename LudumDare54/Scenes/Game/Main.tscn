@@ -23,3 +23,23 @@ scale = Vector2(32, 18)
 
 [node name="Limit" parent="World/Limits" instance=ExtResource("5_6ss2x")]
 position = Vector2(-316, -265)
+
+[node name="Limit2" parent="World/Limits" node_paths=PackedStringArray("area") instance=ExtResource("5_6ss2x")]
+position = Vector2(127, -349)
+area = NodePath("../Limit/Area2D")
+
+[node name="Limit3" parent="World/Limits" node_paths=PackedStringArray("area") instance=ExtResource("5_6ss2x")]
+position = Vector2(497, -94)
+area = NodePath("../Limit/Area2D")
+
+[node name="Limit4" parent="World/Limits" node_paths=PackedStringArray("area") instance=ExtResource("5_6ss2x")]
+position = Vector2(285, 309)
+area = NodePath("../Limit/Area2D")
+
+[node name="Limit5" parent="World/Limits" node_paths=PackedStringArray("area") instance=ExtResource("5_6ss2x")]
+position = Vector2(-164, 354)
+area = NodePath("../Limit/Area2D")
+
+[node name="Limit6" parent="World/Limits" node_paths=PackedStringArray("area") instance=ExtResource("5_6ss2x")]
+position = Vector2(-507, 99)
+area = NodePath("../Limit/Area2D")

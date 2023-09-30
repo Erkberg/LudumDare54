@@ -79,18 +79,29 @@ public partial class Player : CharacterBody2D
             Limit otherLimit = otherParent as Limit;
             if(!isDashing || !otherLimit.isDashThrough)
             {
-                Knockback(other.GlobalPosition);                
-                healthComponent.TakeDamage(1);
+                OnEnterDamage(other.GlobalPosition, 64f);
             }            
+        }
+
+        if(otherParent is Other)
+        {
+            OnEnterDamage(other.GlobalPosition, 16f);
+            (otherParent as Other).Die();
         }
     }
 
-    private void Knockback(Vector2 otherPosition)
+    private void OnEnterDamage(Vector2 otherPosition, float knockback)
+    {
+        Knockback(otherPosition, knockback);
+        healthComponent.TakeDamage(1);
+    }
+
+    private void Knockback(Vector2 otherPosition, float knockback)
     {
         CancelDash();
         Velocity = Vector2.Zero;
         Vector2 knockbackDir = (GlobalPosition - otherPosition).Normalized();
-        GlobalPosition += knockbackDir * 64f;
+        GlobalPosition += knockbackDir * knockback;
     }
 
     private void Die()

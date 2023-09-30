@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://305g00r3fotw"]
+[gd_scene load_steps=7 format=3 uid="uid://305g00r3fotw"]
 
 [ext_resource type="PackedScene" uid="uid://dk2b1ot18e6ye" path="res://Scenes/Player/Player.tscn" id="2_h5r0h"]
 [ext_resource type="PackedScene" uid="uid://60dsblleepeo" path="res://Scenes/Game/Cam.tscn" id="2_x05w4"]
 [ext_resource type="PackedScene" uid="uid://dp5wa7fpcb5c4" path="res://Scenes/UI/GameUI.tscn" id="3_oyuil"]
+[ext_resource type="PackedScene" uid="uid://befedt20kqfse" path="res://Scenes/Others/Other.tscn" id="4_damj2"]
 [ext_resource type="PackedScene" uid="uid://b1mht440ah1g7" path="res://Scenes/World/WorldBackground.tscn" id="4_k3qpi"]
 [ext_resource type="PackedScene" uid="uid://ddgirowxv150l" path="res://Scenes/Limit/Limit.tscn" id="5_6ss2x"]
 
@@ -45,6 +46,19 @@ scale = Vector2(2.5, 0.33)
 minScale = Vector2(2.5, 0.33)
 maxScale = Vector2(3.33, 1)
 area = NodePath("../LimitWest/Area2D")
+
+[node name="DashThrough" type="Node2D" parent="World/Limits"]
+
+[node name="Limit" parent="World/Limits/DashThrough" instance=ExtResource("5_6ss2x")]
+position = Vector2(-290, 83)
+scale = Vector2(0.5, 0.5)
+maxScale = Vector2(1, 1)
+isDashThrough = true
+
+[node name="Others" type="Node2D" parent="World"]
+
+[node name="Other" parent="World/Others" instance=ExtResource("4_damj2")]
+position = Vector2(273, -71)
 
 [node name="Cam" parent="." instance=ExtResource("2_x05w4")]
 editor_draw_limits = true

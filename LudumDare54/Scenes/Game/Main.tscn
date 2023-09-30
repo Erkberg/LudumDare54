@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://305g00r3fotw"]
+[gd_scene load_steps=4 format=3 uid="uid://305g00r3fotw"]
 
 [ext_resource type="PackedScene" uid="uid://dk2b1ot18e6ye" path="res://Scenes/Player/Player.tscn" id="2_h5r0h"]
 [ext_resource type="PackedScene" uid="uid://60dsblleepeo" path="res://Scenes/Game/Cam.tscn" id="2_x05w4"]
+[ext_resource type="PackedScene" uid="uid://b34mduqbikya1" path="res://Scenes/UI/GameUI.tscn" id="3_oyuil"]
 
 [node name="Main" type="Node"]
 
 [node name="Cam" parent="." instance=ExtResource("2_x05w4")]
 
 [node name="Player" parent="." instance=ExtResource("2_h5r0h")]
+
+[node name="GameUI" parent="." instance=ExtResource("3_oyuil")]

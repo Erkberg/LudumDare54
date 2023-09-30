@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Game="*res://Scenes/Game/Game.cs"
+Game="*res://Scenes/Game/Game.tscn"
 
 [display]
 

@@ -5,15 +5,13 @@ public partial class Game : Node
 {
     public static Game inst;
 
-    public GameInput input;
-    public GameRefs refs;
+    [Export] public GameProgress progress;
+    [Export] public GameInput input;    
+    [Export] public GameRefs refs;
 
     public override void _Ready()
     {
         GD.Print("game ready");
         inst = this;
-
-        input = new GameInput();
-        refs = new GameRefs();
     }
 }

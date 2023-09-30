@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class GameInput
+public partial class GameInput : Node
 {
     private const string MoveLeft = "MoveLeft";
     private const string MoveRight = "MoveRight";

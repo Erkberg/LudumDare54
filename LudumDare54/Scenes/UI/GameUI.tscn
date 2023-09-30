@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b34mduqbikya1"]
+[gd_scene load_steps=3 format=3 uid="uid://dp5wa7fpcb5c4"]
 
-[ext_resource type="PackedScene" uid="uid://4b7w7mdf4iui" path="res://Scenes/UI/Ingame/IngameTime.tscn" id="1_mw2tj"]
+[ext_resource type="PackedScene" uid="uid://byx46faf55j3e" path="res://Scenes/UI/Ingame/IngameHealthUI.tscn" id="1_pjyga"]
+[ext_resource type="PackedScene" uid="uid://4b7w7mdf4iui" path="res://Scenes/UI/Ingame/IngameTimeUI.tscn" id="2_nesgc"]
 
 [node name="GameUI" type="CanvasLayer"]
 
-[node name="IngameTimeUI" parent="." instance=ExtResource("1_mw2tj")]
+[node name="IngameHealthUI" parent="." instance=ExtResource("1_pjyga")]
+
+[node name="IngameTimeUI" parent="." instance=ExtResource("2_nesgc")]

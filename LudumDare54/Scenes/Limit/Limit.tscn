@@ -6,7 +6,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_4m4wg"]
 
 [node name="Limit" type="Node2D" node_paths=PackedStringArray("area")]
+scale = Vector2(1.33, 1.33)
 script = ExtResource("1_pjavk")
+minScale = 1.0
+maxScale = 1.5
 minDuration = 2.0
 area = NodePath("Area2D")
 

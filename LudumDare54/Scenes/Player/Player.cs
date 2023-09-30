@@ -8,6 +8,7 @@ public partial class Player : CharacterBody2D
     [Export] private float accelerationSmoothing = 16;
     [Export] private Timer dashTimer;
     [Export] private Area2D area;
+    [Export] private HealthComponent healthComponent;
 
     private GameInput input;
     private Vector2 currentDirection;
@@ -20,6 +21,7 @@ public partial class Player : CharacterBody2D
 
         dashTimer.Timeout += OnDashTimer;
         area.AreaEntered += OnAreaEntered;
+        healthComponent.Died += Die;
     }
 
     public override void _Process(double delta)
@@ -69,7 +71,7 @@ public partial class Player : CharacterBody2D
         Node otherParent = other.GetParent();
         if (otherParent is Limit && !isDashing)
         {
-            Die();
+            healthComponent.TakeDamage(1);
         }
     }
 
@@ -77,5 +79,10 @@ public partial class Player : CharacterBody2D
     {
         //area.Monitoring = false;
         Game.inst.OnPlayerDeath();
+    }
+
+    public float GetHealth()
+    {
+        return healthComponent.currentHealth;
     }
 }

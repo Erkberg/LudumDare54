@@ -8,6 +8,7 @@ public partial class Game : Node
     [Export] public GameProgress progress;
     [Export] public GameInput input;    
     [Export] public GameRefs refs;
+    [Export] public GameState state;
 
     public override void _Ready()
     {

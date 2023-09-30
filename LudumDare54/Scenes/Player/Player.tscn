@@ -1,16 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dk2b1ot18e6ye"]
+[gd_scene load_steps=5 format=3 uid="uid://dk2b1ot18e6ye"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_yqcgu"]
 [ext_resource type="Texture2D" uid="uid://bg6opwdqk11vb" path="res://Assets/Sprites/Square.png" id="2_mjp2y"]
+[ext_resource type="PackedScene" uid="uid://bljyg8fybalt" path="res://Scenes/Component/HealthComponent.tscn" id="3_meayi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gatow"]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("dashTimer", "area")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("dashTimer", "area", "healthComponent")]
 motion_mode = 1
 script = ExtResource("1_yqcgu")
 moveSpeed = 240.0
 dashTimer = NodePath("DashTimer")
 area = NodePath("Area2D")
+healthComponent = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(1, 0, 1, 1)
@@ -25,3 +27,5 @@ shape = SubResource("RectangleShape2D_gatow")
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.25
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_meayi")]

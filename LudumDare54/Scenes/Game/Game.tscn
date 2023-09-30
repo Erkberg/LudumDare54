@@ -1,15 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhkcbbm65mufp"]
+[gd_scene load_steps=6 format=3 uid="uid://bhkcbbm65mufp"]
 
 [ext_resource type="Script" path="res://Scenes/Game/Game.cs" id="1_5jwd5"]
 [ext_resource type="Script" path="res://Scenes/Game/GameInput.cs" id="2_duqr1"]
 [ext_resource type="Script" path="res://Scenes/Game/GameRefs.cs" id="3_e777b"]
 [ext_resource type="Script" path="res://Scenes/Game/GameProgress.cs" id="4_cq6li"]
+[ext_resource type="Script" path="res://Scenes/Game/GameState.cs" id="5_3pscq"]
 
-[node name="Game" type="Node" node_paths=PackedStringArray("progress", "input", "refs")]
+[node name="Game" type="Node" node_paths=PackedStringArray("progress", "input", "refs", "state")]
 script = ExtResource("1_5jwd5")
 progress = NodePath("Progress")
 input = NodePath("Input")
 refs = NodePath("Refs")
+state = NodePath("State")
 
 [node name="Input" type="Node" parent="."]
 script = ExtResource("2_duqr1")
@@ -24,3 +26,6 @@ timer = NodePath("Timer")
 [node name="Timer" type="Timer" parent="Progress"]
 wait_time = 4096.0
 autostart = true
+
+[node name="State" type="Node" parent="."]
+script = ExtResource("5_3pscq")

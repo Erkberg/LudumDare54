@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://4b7w7mdf4iui"]
 
-[ext_resource type="Script" path="res://Scenes/UI/Ingame/IngameTimeUI.cs" id="1_o3aba"]
+[ext_resource type="Script" path="res://Scenes/UI/Ingame/IngameTimeUI.cs" id="1_sg4ii"]
 
 [node name="IngameTimeUI" type="MarginContainer" node_paths=PackedStringArray("timeLabel")]
 anchors_preset = 5
@@ -10,10 +10,17 @@ offset_left = -16.0
 offset_right = 16.0
 offset_bottom = 26.0
 grow_horizontal = 2
+theme_override_constants/margin_left = -8
 theme_override_constants/margin_top = 8
-script = ExtResource("1_o3aba")
+theme_override_constants/margin_right = -8
+script = ExtResource("1_sg4ii")
 timeLabel = NodePath("IngameTimeLabel")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
 
 [node name="IngameTimeLabel" type="Label" parent="."]
 layout_mode = 2
 text = "0:00"
+horizontal_alignment = 1

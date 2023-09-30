@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://byx46faf55j3e"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Ingame/IngameHealthUI.cs" id="1_uk2hr"]
+
+[node name="IngameHealthUI" type="MarginContainer" node_paths=PackedStringArray("healthLabel")]
+offset_right = 32.0
+offset_bottom = 34.0
+theme_override_constants/margin_left = -8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = -8
+script = ExtResource("1_uk2hr")
+healthLabel = NodePath("IngameHealthLabel")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="IngameHealthLabel" type="Label" parent="."]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1

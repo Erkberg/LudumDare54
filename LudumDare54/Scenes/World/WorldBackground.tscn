@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1mht440ah1g7"]
+
+[ext_resource type="Texture2D" uid="uid://bg6opwdqk11vb" path="res://Assets/Sprites/Square.png" id="1_n3pum"]
+
+[node name="WorldBackground" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+texture = ExtResource("1_n3pum")

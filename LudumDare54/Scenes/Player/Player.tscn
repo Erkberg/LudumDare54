@@ -1,19 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://dk2b1ot18e6ye"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_yqcgu"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_b4y0j"]
+[ext_resource type="Texture2D" uid="uid://bg6opwdqk11vb" path="res://Assets/Sprites/Square.png" id="2_mjp2y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gatow"]
 
 [node name="Player" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_yqcgu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(20, 20)
-texture = SubResource("PlaceholderTexture2D_b4y0j")
+self_modulate = Color(1, 0, 1, 1)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("2_mjp2y")
 
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("RectangleShape2D_gatow")

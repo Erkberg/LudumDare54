@@ -5,9 +5,11 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gatow"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("dashTimer")]
 motion_mode = 1
 script = ExtResource("1_yqcgu")
+moveSpeed = 240.0
+dashTimer = NodePath("DashTimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(1, 0, 1, 1)
@@ -20,3 +22,6 @@ collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("RectangleShape2D_gatow")
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.25

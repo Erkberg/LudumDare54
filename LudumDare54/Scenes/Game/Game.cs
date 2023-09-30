@@ -12,14 +12,19 @@ public partial class Game : Node
 
     public override void _Ready()
     {
-        GD.Print("game ready");
         inst = this;
     }
 
     public void OnPlayerDeath()
     {
-        GD.Print("restart game!");
-        progress.Reset();
+        GD.Print("restart game");
+        Reset();
         GetTree().ReloadCurrentScene();
+    }
+
+    private void Reset()
+    {
+        progress.Reset();
+        state.Reset();
     }
 }

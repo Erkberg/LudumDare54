@@ -74,6 +74,7 @@ public partial class Player : CharacterBody2D
     private void OnAreaEntered(Area2D other)
     {
         Node otherParent = other.GetParent();
+        GD.Print(otherParent.Name);
         if (otherParent is Limit)
         {
             Limit otherLimit = otherParent as Limit;
@@ -87,6 +88,12 @@ public partial class Player : CharacterBody2D
         {
             OnEnterDamage(other.GlobalPosition, 16f);
             (otherParent as Other).Die();
+        }
+
+        if (otherParent is Coin)
+        {
+            Game.inst.state.AddCoin();
+            (otherParent as Coin).OnPlayerCollect();
         }
     }
 

@@ -5,9 +5,12 @@ using System;
 public partial class Other : CharacterBody2D
 {
     [Export] private Area2D area;
+    [Export] private Area2D scanArea;
     [Export] private Timer moveTimer;
     [Export] private Timer limitTimer;
     [Export] public double minSpeed = 80, maxSpeed = 160;
+
+    private Coin coin;
 
     public override void _Ready()
     {
@@ -55,7 +58,7 @@ public partial class Other : CharacterBody2D
         PhysicsRayQueryParameters2D query = PhysicsRayQueryParameters2D.Create(GlobalPosition, GlobalPosition + Velocity * 1);
         query.CollideWithAreas = true;
         Dictionary result = spaceState.IntersectRay(query);
-        GD.Print($"from {query.From} to {query.To}");  
+        //GD.Print($"from {query.From} to {query.To}");  
         if(result.Count > 0)
         {
             return true;
@@ -65,6 +68,11 @@ public partial class Other : CharacterBody2D
 
     public void Die()
     {
+        if(coin != null)
+        {
+            coin.OnOtherDie(GlobalPosition);
+        }
+
         QueueFree();
     }
 
@@ -74,6 +82,26 @@ public partial class Other : CharacterBody2D
     }
 
     private void OnAreaEntered(Area2D other)
+    {
+        Node otherParent = other.GetParent();
+        if (otherParent is Limit)
+        {
+            Die();
+        }
+
+        if (otherParent is Coin)
+        {
+            if(coin != null)
+            {
+                coin.OnOtherCollectNewCoin();
+            }
+
+            coin = otherParent as Coin;
+            coin.OnOtherCollect();
+        }
+    }
+
+    private void OnScanAreaEntered(Area2D other)
     {
         Node otherParent = other.GetParent();
         if (otherParent is Limit)

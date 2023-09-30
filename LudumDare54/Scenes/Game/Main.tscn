@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://305g00r3fotw"]
+[gd_scene load_steps=6 format=3 uid="uid://305g00r3fotw"]
 
 [ext_resource type="PackedScene" uid="uid://dk2b1ot18e6ye" path="res://Scenes/Player/Player.tscn" id="2_h5r0h"]
 [ext_resource type="PackedScene" uid="uid://60dsblleepeo" path="res://Scenes/Game/Cam.tscn" id="2_x05w4"]
 [ext_resource type="PackedScene" uid="uid://b34mduqbikya1" path="res://Scenes/UI/GameUI.tscn" id="3_oyuil"]
 [ext_resource type="PackedScene" uid="uid://b1mht440ah1g7" path="res://Scenes/World/WorldBackground.tscn" id="4_k3qpi"]
+[ext_resource type="PackedScene" uid="uid://ddgirowxv150l" path="res://Scenes/Limit/Limit.tscn" id="5_6ss2x"]
 
 [node name="Main" type="Node"]
 
@@ -19,3 +20,6 @@ scale = Vector2(32, 18)
 [node name="Player" parent="World" instance=ExtResource("2_h5r0h")]
 
 [node name="Limits" type="Node2D" parent="World"]
+
+[node name="Limit" parent="World/Limits" instance=ExtResource("5_6ss2x")]
+position = Vector2(-316, -265)

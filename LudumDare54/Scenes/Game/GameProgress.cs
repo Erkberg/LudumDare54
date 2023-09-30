@@ -9,4 +9,9 @@ public partial class GameProgress : Node
     {
         return timer.WaitTime - timer.TimeLeft;
     }
+
+    public void Reset()
+    {
+        timer.Start();
+    }
 }

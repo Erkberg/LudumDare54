@@ -7,6 +7,7 @@ public partial class Player : CharacterBody2D
     [Export] private float dashMultiplier = 4;
     [Export] private float accelerationSmoothing = 16;
     [Export] private Timer dashTimer;
+    [Export] private Area2D area;
 
     private GameInput input;
     private Vector2 currentDirection;
@@ -16,7 +17,9 @@ public partial class Player : CharacterBody2D
     {
         Game.inst.refs.player = this;
         input = Game.inst.input;
+
         dashTimer.Timeout += OnDashTimer;
+        area.AreaEntered += OnAreaEntered;
     }
 
     public override void _Process(double delta)
@@ -59,5 +62,20 @@ public partial class Player : CharacterBody2D
     private void OnDashTimer()
     {
         isDashing = false;
+    }
+
+    private void OnAreaEntered(Area2D other)
+    {
+        Node otherParent = other.GetParent();
+        if (otherParent is Limit)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        //area.Monitoring = false;
+        Game.inst.OnPlayerDeath();
     }
 }

@@ -14,4 +14,11 @@ public partial class Game : Node
         GD.Print("game ready");
         inst = this;
     }
+
+    public void OnPlayerDeath()
+    {
+        GD.Print("restart game!");
+        progress.Reset();
+        GetTree().ReloadCurrentScene();
+    }
 }

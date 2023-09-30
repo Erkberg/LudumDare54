@@ -56,9 +56,14 @@ public partial class Player : CharacterBody2D
         }
         else if(isDashing && input.GetDashUp())
         {
-            isDashing = false;
-            dashTimer.Stop();
+            CancelDash();
         }
+    }
+
+    private void CancelDash()
+    {
+        isDashing = false;
+        dashTimer.Stop();
     }
 
     private void OnDashTimer()
@@ -69,10 +74,23 @@ public partial class Player : CharacterBody2D
     private void OnAreaEntered(Area2D other)
     {
         Node otherParent = other.GetParent();
-        if (otherParent is Limit && !isDashing)
+        if (otherParent is Limit)
         {
-            healthComponent.TakeDamage(1);
+            Limit otherLimit = otherParent as Limit;
+            if(!isDashing || !otherLimit.isDashThrough)
+            {
+                Knockback(other.GlobalPosition);                
+                healthComponent.TakeDamage(1);
+            }            
         }
+    }
+
+    private void Knockback(Vector2 otherPosition)
+    {
+        CancelDash();
+        Velocity = Vector2.Zero;
+        Vector2 knockbackDir = (GlobalPosition - otherPosition).Normalized();
+        GlobalPosition += knockbackDir * 64f;
     }
 
     private void Die()

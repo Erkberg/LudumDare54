@@ -3,9 +3,11 @@ using System;
 
 public partial class Limit : Node2D
 {
-    [Export] public double minScale = 0.33, maxScale = 1.33;
+    [Export] public Vector2 minScale = Vector2.One * 0.5f, maxScale = Vector2.One * 1.5f;
     [Export] public double minDuration = 1.33, maxDuration = 3.33;
     [Export] private Area2D area;
+    [Export] private Sprite2D sprite;
+    [Export] public bool isDashThrough;
 
     private int scaleDir = 0;
 
@@ -16,6 +18,13 @@ public partial class Limit : Node2D
         area.AreaEntered += OnAreaEntered;
         scaleDir = GD.Randf() < 0.5 ? 1 : -1;
         StartTween();
+
+        if(isDashThrough)
+        {
+            Color selfMod = sprite.SelfModulate;
+            selfMod.A = 0.5f;
+            sprite.SelfModulate = selfMod;
+        }
     }
 
     private void OnAreaEntered(Area2D other)
@@ -29,10 +38,10 @@ public partial class Limit : Node2D
 
     private void StartTween()
     {
-        scaleDir *= -1;
-        float scaleValue = scaleDir == -1 ? (float)GD.RandRange(minScale, Scale.X) : (float)GD.RandRange(Scale.X, maxScale);
+        float scaleX = (float)GD.RandRange(minScale.X, maxScale.X);
+        float scaleY = (float)GD.RandRange(minScale.Y, maxScale.Y);
         double duration = GD.RandRange(minDuration, maxDuration);
-        Vector2 scaleVector = new Vector2(scaleValue, scaleValue);
+        Vector2 scaleVector = new Vector2(scaleX, scaleY);
 
         Tween tween = GetTree().CreateTween().BindNode(this);
         tween.TweenProperty(this, ScaleTweenProperty, scaleVector, 1.0f);

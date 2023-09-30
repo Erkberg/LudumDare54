@@ -17,28 +17,34 @@ scale = Vector2(32, 18)
 
 [node name="Limits" type="Node2D" parent="World"]
 
-[node name="Limit" parent="World/Limits" instance=ExtResource("5_6ss2x")]
-position = Vector2(-308, -373)
+[node name="Solid" type="Node2D" parent="World/Limits"]
 
-[node name="Limit2" parent="World/Limits" node_paths=PackedStringArray("area") instance=ExtResource("5_6ss2x")]
-position = Vector2(208, -349)
-area = NodePath("../Limit/Area2D")
+[node name="LimitWest" parent="World/Limits/Solid" instance=ExtResource("5_6ss2x")]
+position = Vector2(-640, 0)
+scale = Vector2(0.5, 1.5)
+minScale = Vector2(0.33, 1.5)
+maxScale = Vector2(1, 2)
 
-[node name="Limit3" parent="World/Limits" node_paths=PackedStringArray("area") instance=ExtResource("5_6ss2x")]
-position = Vector2(648, -51)
-area = NodePath("../Limit/Area2D")
+[node name="LimitEast" parent="World/Limits/Solid" node_paths=PackedStringArray("area") instance=ExtResource("5_6ss2x")]
+position = Vector2(640, 0)
+scale = Vector2(0.5, 1.5)
+minScale = Vector2(0.33, 1.5)
+maxScale = Vector2(1, 2)
+area = NodePath("../LimitWest/Area2D")
 
-[node name="Limit4" parent="World/Limits" node_paths=PackedStringArray("area") instance=ExtResource("5_6ss2x")]
-position = Vector2(305, 359)
-area = NodePath("../Limit/Area2D")
+[node name="LimitNorth" parent="World/Limits/Solid" node_paths=PackedStringArray("area") instance=ExtResource("5_6ss2x")]
+position = Vector2(0, -360)
+scale = Vector2(2.5, 0.33)
+minScale = Vector2(2.5, 0.33)
+maxScale = Vector2(3.33, 1)
+area = NodePath("../LimitWest/Area2D")
 
-[node name="Limit5" parent="World/Limits" node_paths=PackedStringArray("area") instance=ExtResource("5_6ss2x")]
-position = Vector2(-265, 412)
-area = NodePath("../Limit/Area2D")
-
-[node name="Limit6" parent="World/Limits" node_paths=PackedStringArray("area") instance=ExtResource("5_6ss2x")]
-position = Vector2(-668, 46)
-area = NodePath("../Limit/Area2D")
+[node name="LimitSouth" parent="World/Limits/Solid" node_paths=PackedStringArray("area") instance=ExtResource("5_6ss2x")]
+position = Vector2(0, 360)
+scale = Vector2(2.5, 0.33)
+minScale = Vector2(2.5, 0.33)
+maxScale = Vector2(3.33, 1)
+area = NodePath("../LimitWest/Area2D")
 
 [node name="Cam" parent="." instance=ExtResource("2_x05w4")]
 editor_draw_limits = true

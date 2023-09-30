@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhkcbbm65mufp"]
+[gd_scene load_steps=7 format=3 uid="uid://bhkcbbm65mufp"]
 
 [ext_resource type="Script" path="res://Scenes/Game/Game.cs" id="1_5jwd5"]
 [ext_resource type="Script" path="res://Scenes/Game/GameInput.cs" id="2_duqr1"]
 [ext_resource type="Script" path="res://Scenes/Game/GameRefs.cs" id="3_e777b"]
 [ext_resource type="Script" path="res://Scenes/Game/GameProgress.cs" id="4_cq6li"]
 [ext_resource type="Script" path="res://Scenes/Game/GameState.cs" id="5_3pscq"]
+[ext_resource type="Script" path="res://Scenes/Game/GameAudio.cs" id="6_4gpri"]
 
 [node name="Game" type="Node" node_paths=PackedStringArray("progress", "input", "refs", "state")]
 script = ExtResource("1_5jwd5")
@@ -29,3 +30,13 @@ autostart = true
 
 [node name="State" type="Node" parent="."]
 script = ExtResource("5_3pscq")
+
+[node name="Audio" type="Node" parent="." node_paths=PackedStringArray("soundPlayer")]
+script = ExtResource("6_4gpri")
+soundPlayer = NodePath("SoundPlayer")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="Audio"]
+
+[node name="AtmoPlayer" type="AudioStreamPlayer" parent="Audio"]
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="Audio"]

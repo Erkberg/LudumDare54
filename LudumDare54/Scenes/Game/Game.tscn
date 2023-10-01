@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bhkcbbm65mufp"]
+[gd_scene load_steps=16 format=3 uid="uid://bhkcbbm65mufp"]
 
 [ext_resource type="Script" path="res://Scenes/Game/Game.cs" id="1_5jwd5"]
 [ext_resource type="Script" path="res://Scenes/Game/GameInput.cs" id="2_duqr1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scenes/Game/GameAudio.cs" id="6_4gpri"]
 [ext_resource type="Script" path="res://Scenes/Game/GameStats.cs" id="6_pwepg"]
 [ext_resource type="AudioStream" uid="uid://cjhwtiqdfwlcc" path="res://Assets/Audio/dash.wav" id="7_2i8px"]
+[ext_resource type="AudioStream" uid="uid://c7sek4rbqsmh0" path="res://Assets/Audio/music.ogg" id="7_6col7"]
 [ext_resource type="AudioStream" uid="uid://bcjswnm3jrqc0" path="res://Assets/Audio/spawn.wav" id="8_lpwnq"]
 [ext_resource type="AudioStream" uid="uid://xqu5f85bk3dd" path="res://Assets/Audio/hurt.wav" id="9_s0g61"]
 [ext_resource type="AudioStream" uid="uid://dqu3yjggivd2w" path="res://Assets/Audio/coin.wav" id="10_gsvw4"]
@@ -31,6 +32,7 @@ stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s0kjt"]
 streams_count = 1
+random_pitch = 1.05
 stream_0/stream = ExtResource("10_gsvw4")
 stream_0/weight = 1.0
 
@@ -67,6 +69,8 @@ spawnPlayer = NodePath("Sounds/SpawnPlayer")
 hurtPlayer = NodePath("Sounds/HurtPlayer")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("7_6col7")
+autoplay = true
 
 [node name="AtmoPlayer" type="AudioStreamPlayer" parent="Audio"]
 

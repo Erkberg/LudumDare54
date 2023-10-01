@@ -76,6 +76,7 @@ public partial class WorldSpawner : Node2D
 
     private void SpawnLimit(Vector2 spawnPosition)
     {
+        Game.inst.refs.screenShake.ApplyShake(16f, 16f);
         Limit limit = limitScene.Instantiate() as Limit;
         limitsHolder.AddChild(limit);
         limit.GlobalPosition = spawnPosition;
@@ -83,6 +84,7 @@ public partial class WorldSpawner : Node2D
 
     private void SpawnOther(Vector2 spawnPosition)
     {
+        Game.inst.refs.screenShake.ApplyShake(8f, 16f);
         Other other = otherScene.Instantiate() as Other;
         othersHolder.AddChild(other);
         other.GlobalPosition = spawnPosition;

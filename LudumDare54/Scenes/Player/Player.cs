@@ -15,6 +15,7 @@ public partial class Player : CharacterBody2D
 
     private GameInput input;
     private GameAudio audio;
+    private ScreenShake screenShake;
     private Vector2 currentDirection;
     private bool isDashing;
     private bool isInvincible;
@@ -61,6 +62,8 @@ public partial class Player : CharacterBody2D
         {
             isDashing = true;
             dashTimer.Start();
+
+            Game.inst.refs.screenShake.ApplyShake(8f, 32f);
             audio.PlayDashSound();
         }
         else if(isDashing && input.GetDashUp())
@@ -148,6 +151,7 @@ public partial class Player : CharacterBody2D
             return;
 
         audio.PlayHurtSound();
+        Game.inst.refs.screenShake.ApplyShake(16f, 16f);
         healthComponent.TakeDamage(1);
         InvincibleSequence();
     }

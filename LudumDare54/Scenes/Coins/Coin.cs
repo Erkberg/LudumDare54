@@ -5,6 +5,11 @@ public partial class Coin : Node2D
 {
     [Export] private Area2D area;
 
+    public bool CanCollect()
+    {
+        return Visible;
+    }
+
     public void OnPlayerCollect()
     {
         QueueFree();
@@ -13,14 +18,12 @@ public partial class Coin : Node2D
     public void OnOtherCollect()
     {
         Visible = false;
-        area.Monitorable = false;
     }
 
     public void OnOtherDie(Vector2 position)
     {
         GlobalPosition = position;
         Visible = true;
-        area.Monitorable = true;
     }
 
     public void OnOtherCollectNewCoin()

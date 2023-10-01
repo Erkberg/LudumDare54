@@ -5,7 +5,7 @@
 [node name="IngameHealthUI" type="MarginContainer" node_paths=PackedStringArray("healthLabel")]
 offset_right = 32.0
 offset_bottom = 34.0
-theme_override_constants/margin_left = -8
+theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = -8
 script = ExtResource("1_uk2hr")

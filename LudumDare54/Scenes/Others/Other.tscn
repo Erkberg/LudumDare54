@@ -1,18 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://befedt20kqfse"]
+[gd_scene load_steps=5 format=3 uid="uid://befedt20kqfse"]
 
 [ext_resource type="Script" path="res://Scenes/Others/Other.cs" id="1_fu8lh"]
 [ext_resource type="Texture2D" uid="uid://bg6opwdqk11vb" path="res://Assets/Sprites/Square.png" id="1_soauv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q7t70"]
 
-[node name="Other" type="CharacterBody2D" node_paths=PackedStringArray("area", "moveTimer", "limitTimer")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ouxij"]
+radius = 48.0
+
+[node name="Other" type="CharacterBody2D" node_paths=PackedStringArray("area", "scanArea", "moveTimer", "rayCast")]
 collision_layer = 4
 collision_mask = 11
 motion_mode = 1
 script = ExtResource("1_fu8lh")
 area = NodePath("Area2D")
+scanArea = NodePath("ScanArea")
 moveTimer = NodePath("MoveTimer")
-limitTimer = NodePath("LimitTimer")
+rayCast = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0.796875, 0.472656, 0.652344, 1)
@@ -22,16 +26,22 @@ texture = ExtResource("1_soauv")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 11
+collision_mask = 27
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 0.785398
+scale = Vector2(0.9, 0.9)
 shape = SubResource("RectangleShape2D_q7t70")
+
+[node name="ScanArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 25
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScanArea"]
+rotation = 0.785398
+scale = Vector2(0.9, 0.9)
+shape = SubResource("CircleShape2D_ouxij")
 
 [node name="MoveTimer" type="Timer" parent="."]
 wait_time = 2.0
-autostart = true
-
-[node name="LimitTimer" type="Timer" parent="."]
-wait_time = 0.33
 autostart = true

@@ -90,10 +90,20 @@ public partial class Player : CharacterBody2D
             // (otherParent as Other).Die();
         }
 
+        if (otherParent is Border)
+        {
+            healthComponent.TakeDamage(100);
+            // (otherParent as Other).Die();
+        }
+
         if (otherParent is Coin)
         {
             Game.inst.state.AddCoin();
-            (otherParent as Coin).OnPlayerCollect();
+            Coin otherCoin = otherParent as Coin;
+            if(otherCoin.CanCollect())
+            {
+                otherCoin.OnPlayerCollect();
+            }            
         }
     }
 

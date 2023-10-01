@@ -8,6 +8,7 @@ public partial class Other : CharacterBody2D
     [Export] private Area2D scanArea;
     [Export] private Timer moveTimer;
     [Export] public double minSpeed = 80, maxSpeed = 160;
+    [Export] public double minMoveTimer = 2, maxMoveTimer = 8;
 
     private Coin coin;
 
@@ -27,7 +28,13 @@ public partial class Other : CharacterBody2D
 
     private void OnMoveTimer()
     {
+        RandomizeMoveTimer();
         ChangeDir();
+    }
+
+    private void RandomizeMoveTimer()
+    {
+        moveTimer.WaitTime = GD.RandRange(minMoveTimer, maxMoveTimer);
     }
 
     private void ChangeDir()

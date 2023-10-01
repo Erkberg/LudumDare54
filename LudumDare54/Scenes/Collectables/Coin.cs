@@ -4,6 +4,7 @@ using System;
 public partial class Coin : Node2D
 {
     [Export] private Area2D area;
+    [Export] public float healValue = 1;
 
     public bool CanCollect()
     {

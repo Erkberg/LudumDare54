@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bubcbhit87dhl"]
+
+[ext_resource type="Script" path="res://Scenes/Collectables/Heart.cs" id="1_vmu75"]
+[ext_resource type="Texture2D" uid="uid://bgmjbbl8lesff" path="res://Assets/Sprites/Heart.png" id="2_ji76k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_amf34"]
+
+[node name="Heart" type="Node2D"]
+script = ExtResource("1_vmu75")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_amf34")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0.617188, 0.449219, 1)
+scale = Vector2(0.167, 0.167)
+texture = ExtResource("2_ji76k")

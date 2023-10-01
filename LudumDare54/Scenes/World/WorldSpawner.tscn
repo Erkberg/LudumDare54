@@ -4,29 +4,30 @@
 [ext_resource type="PackedScene" uid="uid://bbehbs3ikdfwo" path="res://Scenes/World/SpawnAnticipation.tscn" id="2_sdy5r"]
 [ext_resource type="PackedScene" uid="uid://ddgirowxv150l" path="res://Scenes/Limit/Limit.tscn" id="2_x4tar"]
 [ext_resource type="PackedScene" uid="uid://befedt20kqfse" path="res://Scenes/Others/Other.tscn" id="3_obunk"]
-[ext_resource type="PackedScene" uid="uid://di06it2f8mt2x" path="res://Scenes/Coins/Coin.tscn" id="4_3eukf"]
+[ext_resource type="PackedScene" uid="uid://di06it2f8mt2x" path="res://Scenes/Collectables/Coin.tscn" id="5_4ed5u"]
 
-[node name="WorldSpawner" type="Node2D" node_paths=PackedStringArray("limitSpawnTimer", "otherSpawnTimer", "coinSpawnTimer", "anticipationsHolder", "limitsHolder", "othersHolder", "coinsHolder")]
+[node name="WorldSpawner" type="Node2D" node_paths=PackedStringArray("limitSpawnTimer", "otherSpawnTimer", "coinSpawnTimer", "heartSpawnTimer", "anticipationsHolder", "limitsHolder", "othersHolder", "collectablesHolder")]
 script = ExtResource("1_t1qhk")
 spawnAnticipationScene = ExtResource("2_sdy5r")
 limitScene = ExtResource("2_x4tar")
 otherScene = ExtResource("3_obunk")
-coinScene = ExtResource("4_3eukf")
+coinScene = ExtResource("5_4ed5u")
 limitSpawnTimer = NodePath("Timers/LimitsTimer")
 otherSpawnTimer = NodePath("Timers/OthersTimer")
 coinSpawnTimer = NodePath("Timers/CoinsTimer")
+heartSpawnTimer = NodePath("Timers/HeartsTimer")
 anticipationsHolder = NodePath("Holders/AnticipationsHolder")
 limitsHolder = NodePath("Holders/LimitsHolder")
 othersHolder = NodePath("Holders/OthersHolder")
-coinsHolder = NodePath("Holders/CoinsHolder")
+collectablesHolder = NodePath("Holders/CollectablesHolder")
 spawnBounds = Vector2(640, 360)
 limitSpawnOffset = Vector2(100, 50)
 otherSpawnOffset = Vector2(200, 100)
-coinSpawnOffset = Vector2(100, 50)
+collectablesSpawnOffset = Vector2(100, 50)
 
 [node name="Holders" type="Node2D" parent="."]
 
-[node name="CoinsHolder" type="Node2D" parent="Holders"]
+[node name="CollectablesHolder" type="Node2D" parent="Holders"]
 
 [node name="OthersHolder" type="Node2D" parent="Holders"]
 
@@ -45,5 +46,9 @@ wait_time = 13.0
 autostart = true
 
 [node name="CoinsTimer" type="Timer" parent="Timers"]
-wait_time = 3.0
+wait_time = 2.0
+autostart = true
+
+[node name="HeartsTimer" type="Timer" parent="Timers"]
+wait_time = 19.0
 autostart = true

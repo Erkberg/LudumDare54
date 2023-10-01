@@ -4,6 +4,7 @@ using System;
 public partial class HealthComponent : Node
 {
     [Export] public float maxHealth = 3;
+    [Export] public float damagePerSecond;
 
     [Signal] public delegate void DiedEventHandler();
 
@@ -15,10 +16,24 @@ public partial class HealthComponent : Node
         currentHealth = maxHealth;
     }
 
+    public override void _Process(double delta)
+    {
+        TakeDamage(damagePerSecond * (float)delta);
+    }
+
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
         CallDeferred(MethodName.CheckDeath);
+    }
+
+    public void Heal(float amount)
+    {
+        currentHealth += amount;
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
     }
 
     private void CheckDeath()

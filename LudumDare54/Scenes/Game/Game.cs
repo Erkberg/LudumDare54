@@ -9,6 +9,7 @@ public partial class Game : Node
     [Export] public GameRefs refs;
     [Export] public GameState state;
     [Export] public GameStats stats;
+    [Export] public GameAudio audio;
 
     public override void _Ready()
     {

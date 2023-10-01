@@ -8,11 +8,13 @@ public partial class Player : CharacterBody2D
     [Export] private float accelerationSmoothing = 16;
     [Export] private int invinciblityFrames = 8;
     [Export] private Timer dashTimer;
-    [Export] private Area2D area;
+    [Export] private Area2D hurtArea;
+    [Export] private Area2D collectArea;
     [Export] private HealthComponent healthComponent;
     [Export] private Sprite2D sprite;
 
     private GameInput input;
+    private GameAudio audio;
     private Vector2 currentDirection;
     private bool isDashing;
     private bool isInvincible;
@@ -21,10 +23,12 @@ public partial class Player : CharacterBody2D
     {
         Game.inst.refs.player = this;
         input = Game.inst.input;
+        audio = Game.inst.audio;
 
         dashTimer.Timeout += OnDashTimer;
-        area.AreaEntered += OnAreaEntered;
-        area.AreaExited += OnAreaExited;
+        collectArea.AreaEntered += OnCollectAreaEntered;
+        hurtArea.AreaEntered += OnHurtAreaEntered;
+        hurtArea.AreaExited += OnHurtAreaExited;
         healthComponent.Died += Die;
     }
 
@@ -53,10 +57,11 @@ public partial class Player : CharacterBody2D
 
     private void CheckDash()
     {
-        if(!isDashing && input.GetDashDown())
+        if(!isDashing && input.GetDashDown() && !Velocity.Equals(Vector2.Zero))
         {
             isDashing = true;
             dashTimer.Start();
+            audio.PlayDashSound();
         }
         else if(isDashing && input.GetDashUp())
         {
@@ -75,14 +80,37 @@ public partial class Player : CharacterBody2D
         isDashing = false;
     }
 
-    private void OnAreaEntered(Area2D other)
+    private void OnCollectAreaEntered(Area2D other)
     {
         Node otherParent = other.GetParent();
-        GD.Print(otherParent.Name);
+
+        if (otherParent is Coin)
+        {
+            Game.inst.state.AddCoin();
+            Coin otherCoin = otherParent as Coin;
+            if (otherCoin.CanCollect())
+            {
+                otherCoin.OnPlayerCollect();
+                healthComponent.Heal(otherCoin.healValue);
+                audio.PlayCoinSound();
+            }
+        }
+
+        if (otherParent is Heart)
+        {
+            healthComponent.Heal(1);
+        }
+    }
+
+    private void OnHurtAreaEntered(Area2D other)
+    {
+        Node otherParent = other.GetParent();
+        
         if (other is LimitAreaOuter && (otherParent as Limit).CanHurt())
         {
             if(!isDashing)
             {
+                GD.Print(otherParent.Name);
                 OnEnterDamage(other.GlobalPosition, 64f);
             }            
         }
@@ -98,25 +126,16 @@ public partial class Player : CharacterBody2D
             healthComponent.TakeDamage(100);
             // (otherParent as Other).Die();
         }
-
-        if (otherParent is Coin)
-        {
-            Game.inst.state.AddCoin();
-            Coin otherCoin = otherParent as Coin;
-            if(otherCoin.CanCollect())
-            {
-                otherCoin.OnPlayerCollect();
-            }            
-        }
     }
 
-    private void OnAreaExited(Area2D other)
+    private void OnHurtAreaExited(Area2D other)
     {
         Node otherParent = other.GetParent();
         if (other is LimitAreaInner && (otherParent as Limit).CanHurt())
         {
             if (!isDashing)
             {
+                GD.Print(otherParent.Name);
                 OnEnterDamage(other.GlobalPosition, 64f);
             }
         }
@@ -128,6 +147,7 @@ public partial class Player : CharacterBody2D
         if (isInvincible)
             return;
 
+        audio.PlayHurtSound();
         healthComponent.TakeDamage(1);
         InvincibleSequence();
     }
@@ -149,6 +169,11 @@ public partial class Player : CharacterBody2D
     public float GetHealth()
     {
         return healthComponent.currentHealth;
+    }
+
+    public float GetHealthPercent()
+    {
+        return healthComponent.currentHealth / healthComponent.maxHealth;
     }
 
     private async void InvincibleSequence()

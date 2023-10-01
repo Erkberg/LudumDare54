@@ -75,7 +75,7 @@ horizontal_alignment = 1
 
 [node name="DashLabel" type="Label" parent="Container/Contents/VBoxContainer"]
 layout_mode = 2
-text = "Dash = Any controller button / Space"
+text = "Dash (variable length) = Any controller button / Space"
 horizontal_alignment = 1
 
 [node name="YouLabel" type="Label" parent="Container/Contents/VBoxContainer"]
@@ -93,7 +93,7 @@ horizontal_alignment = 1
 [node name="DamageLabel" type="Label" parent="Container/Contents/VBoxContainer"]
 self_modulate = Color(0.796875, 0.472656, 0.652344, 1)
 layout_mode = 2
-text = "Pink Ring & Diamond = Hurt"
+text = "Pink Ring & Diamond = Hurt & Dash-through"
 horizontal_alignment = 1
 
 [node name="DeathLabel" type="Label" parent="Container/Contents/VBoxContainer"]
@@ -114,6 +114,7 @@ text = "0:00"
 horizontal_alignment = 1
 
 [node name="HighscoreCoinsLabel" type="Label" parent="Container/Contents/VBoxContainer"]
+visible = false
 self_modulate = Color(0.9375, 0.890625, 0.257813, 1)
 layout_mode = 2
 text = "0"

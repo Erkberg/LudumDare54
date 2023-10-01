@@ -7,26 +7,29 @@ public partial class WorldSpawner : Node2D
     [Export] private PackedScene limitScene;
     [Export] private PackedScene otherScene;
     [Export] private PackedScene coinScene;
+    [Export] private PackedScene heartScene;
 
     [Export] private Timer limitSpawnTimer;
     [Export] private Timer otherSpawnTimer;
     [Export] private Timer coinSpawnTimer;
+    [Export] private Timer heartSpawnTimer;
 
     [Export] private Node2D anticipationsHolder;
     [Export] private Node2D limitsHolder;
     [Export] private Node2D othersHolder;
-    [Export] private Node2D coinsHolder;
+    [Export] private Node2D collectablesHolder;
 
     [Export] private Vector2 spawnBounds;
     [Export] private Vector2 limitSpawnOffset;
     [Export] private Vector2 otherSpawnOffset;
-    [Export] private Vector2 coinSpawnOffset;
+    [Export] private Vector2 collectablesSpawnOffset;
 
     public override void _Ready()
     {
         limitSpawnTimer.Timeout += OnLimitSpawnTimer;
         otherSpawnTimer.Timeout += OnOtherSpawnTimer;
         coinSpawnTimer.Timeout += OnCoinSpawnTimer;
+        //heartSpawnTimer.Timeout += OnHeartSpawnTimer;
     }
 
     private void OnLimitSpawnTimer()
@@ -42,6 +45,11 @@ public partial class WorldSpawner : Node2D
     private void OnCoinSpawnTimer()
     {
         SpawnCoin();
+    }
+
+    private void OnHeartSpawnTimer()
+    {
+        SpawnHeart();
     }
 
     private void SpawnAnticipation(SpawnAnticipation.Type type)
@@ -83,9 +91,17 @@ public partial class WorldSpawner : Node2D
     private void SpawnCoin()
     {
         Coin coin = coinScene.Instantiate() as Coin;
-        Vector2 spawnPosition = GetRandomSpawnPosition(coinSpawnOffset);
-        coinsHolder.AddChild(coin);
+        Vector2 spawnPosition = GetRandomSpawnPosition(collectablesSpawnOffset);
+        collectablesHolder.AddChild(coin);
         coin.GlobalPosition = spawnPosition;
+    }
+
+    private void SpawnHeart()
+    {
+        Heart heart = heartScene.Instantiate() as Heart;
+        Vector2 spawnPosition = GetRandomSpawnPosition(collectablesSpawnOffset);
+        collectablesHolder.AddChild(heart);
+        heart.GlobalPosition = spawnPosition;
     }
 
     private Vector2 GetRandomSpawnPosition(Vector2 innerOffset)

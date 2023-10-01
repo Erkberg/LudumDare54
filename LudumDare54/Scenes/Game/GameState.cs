@@ -17,6 +17,11 @@ public partial class GameState : Node
         return Game.inst.refs.player.GetHealth();
     }
 
+    public float GetPlayerHealthPercent()
+    {
+        return Game.inst.refs.player.GetHealthPercent();
+    }
+
     public void AddCoin()
     {
         coins++;

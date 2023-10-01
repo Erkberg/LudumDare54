@@ -27,6 +27,7 @@ public partial class SpawnAnticipation : Node2D
 
     private void OnTimer()
     {
+        Game.inst.audio.PlaySpawnSound();
         onSpawn?.Invoke(GlobalPosition);
         QueueFree();
     }

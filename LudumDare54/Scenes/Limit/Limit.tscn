@@ -9,8 +9,6 @@
 
 [node name="Limit" type="Node2D" node_paths=PackedStringArray("sprite", "activeTimer")]
 script = ExtResource("1_pjavk")
-minDuration = 2.4
-maxDuration = 4.8
 sprite = NodePath("Sprite2D")
 activeTimer = NodePath("ActiveTimer")
 

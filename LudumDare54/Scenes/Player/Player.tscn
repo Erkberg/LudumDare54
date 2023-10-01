@@ -6,28 +6,38 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gatow"]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("dashTimer", "area", "healthComponent", "sprite")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("dashTimer", "hurtArea", "collectArea", "healthComponent", "sprite")]
 motion_mode = 1
 script = ExtResource("1_yqcgu")
 moveSpeed = 240.0
 invinciblityFrames = 10
 dashTimer = NodePath("DashTimer")
-area = NodePath("Area2D")
+hurtArea = NodePath("HurtArea")
+collectArea = NodePath("CollectArea")
 healthComponent = NodePath("HealthComponent")
 sprite = NodePath("Sprite2D")
-
-[node name="Area2D" type="Area2D" parent="."]
-collision_mask = 30
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_gatow")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0.615686, 0.45098, 1)
 scale = Vector2(0.33, 0.33)
 texture = ExtResource("2_mjp2y")
 
+[node name="CollectArea" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+shape = SubResource("RectangleShape2D_gatow")
+
+[node name="HurtArea" type="Area2D" parent="."]
+scale = Vector2(0.8, 0.8)
+collision_mask = 22
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
+shape = SubResource("RectangleShape2D_gatow")
+
 [node name="DashTimer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.33
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_meayi")]
+maxHealth = 6.0
+damagePerSecond = 0.3

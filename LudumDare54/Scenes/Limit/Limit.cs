@@ -4,7 +4,7 @@ using System;
 public partial class Limit : Node2D
 {
     [Export] public Vector2 minScale = Vector2.One * 0.5f, maxScale = Vector2.One * 1.5f;
-    [Export] public double minDuration = 1.33, maxDuration = 3.33;
+    [Export] public double minDuration = 2, maxDuration = 8;
     [Export] private Sprite2D sprite;
     [Export] private Timer activeTimer;
     [Export] public bool randomizeScaleEachTween = false;
@@ -31,7 +31,7 @@ public partial class Limit : Node2D
         Vector2 scaleVector = new Vector2(scaleX, scaleY);
 
         Tween tween = GetTree().CreateTween().BindNode(this);
-        tween.TweenProperty(this, ScaleTweenProperty, scaleVector, 1.0f);
+        tween.TweenProperty(this, ScaleTweenProperty, scaleVector, duration);
         tween.TweenCallback(Callable.From(OnTweenEnded));
     }
 

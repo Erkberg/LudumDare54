@@ -5,8 +5,7 @@ public partial class GameState : Node
 {
     [Export] private Timer timer;
 
-    public float coins;
-    
+    public float coins;    
 
     public double GetTimeElapsed()
     {

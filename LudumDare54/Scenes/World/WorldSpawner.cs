@@ -3,15 +3,20 @@ using System;
 
 public partial class WorldSpawner : Node2D
 {
+    [Export] private PackedScene spawnAnticipationScene;
     [Export] private PackedScene limitScene;
     [Export] private PackedScene otherScene;
     [Export] private PackedScene coinScene;
+
     [Export] private Timer limitSpawnTimer;
     [Export] private Timer otherSpawnTimer;
     [Export] private Timer coinSpawnTimer;
+
+    [Export] private Node2D anticipationsHolder;
     [Export] private Node2D limitsHolder;
     [Export] private Node2D othersHolder;
     [Export] private Node2D coinsHolder;
+
     [Export] private Vector2 spawnBounds;
     [Export] private Vector2 limitSpawnOffset;
     [Export] private Vector2 otherSpawnOffset;
@@ -26,12 +31,12 @@ public partial class WorldSpawner : Node2D
 
     private void OnLimitSpawnTimer()
     {
-        SpawnLimit();
+        SpawnAnticipation(global::SpawnAnticipation.Type.Limit);
     }
 
     private void OnOtherSpawnTimer()
     {
-        SpawnOther();
+        SpawnAnticipation(global::SpawnAnticipation.Type.Other);
     }
 
     private void OnCoinSpawnTimer()
@@ -39,18 +44,38 @@ public partial class WorldSpawner : Node2D
         SpawnCoin();
     }
 
-    private void SpawnLimit()
+    private void SpawnAnticipation(SpawnAnticipation.Type type)
+    {
+        SpawnAnticipation anticipation = spawnAnticipationScene.Instantiate() as SpawnAnticipation;
+        Vector2 spawnPosition = GetRandomSpawnPosition(limitSpawnOffset);
+        anticipationsHolder.AddChild(anticipation);
+        anticipation.GlobalPosition = spawnPosition;
+        anticipation.spawnType = type;
+
+        switch (type)
+        {
+            case global::SpawnAnticipation.Type.Limit:
+                anticipation.SetScale(1);
+                anticipation.onSpawn += SpawnLimit;
+                break;
+
+            case global::SpawnAnticipation.Type.Other:
+                anticipation.SetScale(0.133f);
+                anticipation.onSpawn += SpawnOther;
+                break;
+        }
+    }
+
+    private void SpawnLimit(Vector2 spawnPosition)
     {
         Limit limit = limitScene.Instantiate() as Limit;
-        Vector2 spawnPosition = GetRandomSpawnPosition(limitSpawnOffset);
         limitsHolder.AddChild(limit);
         limit.GlobalPosition = spawnPosition;
     }
 
-    private void SpawnOther()
+    private void SpawnOther(Vector2 spawnPosition)
     {
         Other other = otherScene.Instantiate() as Other;
-        Vector2 spawnPosition = GetRandomSpawnPosition(otherSpawnOffset);
         othersHolder.AddChild(other);
         other.GlobalPosition = spawnPosition;
     }

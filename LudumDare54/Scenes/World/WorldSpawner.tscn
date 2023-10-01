@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://b4671f13ispf7"]
 
 [ext_resource type="Script" path="res://Scenes/World/WorldSpawner.cs" id="1_t1qhk"]
-[ext_resource type="PackedScene" uid="uid://dl3svliae8mu8" path="res://Scenes/Limit/LimitDashThrough.tscn" id="2_u2xkn"]
+[ext_resource type="PackedScene" uid="uid://ddgirowxv150l" path="res://Scenes/Limit/Limit.tscn" id="2_x4tar"]
 [ext_resource type="PackedScene" uid="uid://befedt20kqfse" path="res://Scenes/Others/Other.tscn" id="3_obunk"]
 [ext_resource type="PackedScene" uid="uid://di06it2f8mt2x" path="res://Scenes/Coins/Coin.tscn" id="4_3eukf"]
 
 [node name="WorldSpawner" type="Node2D" node_paths=PackedStringArray("limitSpawnTimer", "otherSpawnTimer", "coinSpawnTimer", "limitsHolder", "othersHolder", "coinsHolder")]
 script = ExtResource("1_t1qhk")
-limitScene = ExtResource("2_u2xkn")
+limitScene = ExtResource("2_x4tar")
 otherScene = ExtResource("3_obunk")
 coinScene = ExtResource("4_3eukf")
 limitSpawnTimer = NodePath("Timers/LimitsTimer")
@@ -23,11 +23,11 @@ coinSpawnOffset = Vector2(100, 50)
 
 [node name="Holders" type="Node2D" parent="."]
 
+[node name="CoinsHolder" type="Node2D" parent="Holders"]
+
 [node name="OthersHolder" type="Node2D" parent="Holders"]
 
 [node name="LimitsHolder" type="Node2D" parent="Holders"]
-
-[node name="CoinsHolder" type="Node2D" parent="Holders"]
 
 [node name="Timers" type="Node" parent="."]
 

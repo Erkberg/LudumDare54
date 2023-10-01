@@ -7,7 +7,8 @@ public partial class Limit : Node2D
     [Export] public double minDuration = 1.33, maxDuration = 3.33;
     [Export] private Area2D area;
     [Export] private Sprite2D sprite;
-    [Export] public bool isDashThrough;
+    [Export] public bool randomizeScaleEachTween = false;
+    [Export] public bool randomizeDurationEachTween = true;
 
     private int scaleDir = 0;
 
@@ -18,13 +19,6 @@ public partial class Limit : Node2D
         area.AreaEntered += OnAreaEntered;
         scaleDir = GD.Randf() < 0.5 ? 1 : -1;
         StartTween();
-
-        if(isDashThrough)
-        {
-            Color selfMod = sprite.SelfModulate;
-            selfMod.A = 0.5f;
-            sprite.SelfModulate = selfMod;
-        }
     }
 
     private void OnAreaEntered(Area2D other)

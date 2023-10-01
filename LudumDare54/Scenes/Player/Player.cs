@@ -78,7 +78,7 @@ public partial class Player : CharacterBody2D
         if (otherParent is Limit)
         {
             Limit otherLimit = otherParent as Limit;
-            if(!isDashing || !otherLimit.isDashThrough)
+            if(!isDashing)
             {
                 OnEnterDamage(other.GlobalPosition, 64f);
             }            
@@ -87,7 +87,7 @@ public partial class Player : CharacterBody2D
         if(otherParent is Other)
         {
             OnEnterDamage(other.GlobalPosition, 16f);
-            (otherParent as Other).Die();
+            // (otherParent as Other).Die();
         }
 
         if (otherParent is Coin)
@@ -99,7 +99,7 @@ public partial class Player : CharacterBody2D
 
     private void OnEnterDamage(Vector2 otherPosition, float knockback)
     {
-        Knockback(otherPosition, knockback);
+        //Knockback(otherPosition, knockback);
         healthComponent.TakeDamage(1);
     }
 

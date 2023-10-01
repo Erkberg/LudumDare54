@@ -1,8 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dl3svliae8mu8"]
+[gd_scene load_steps=2 format=3 uid="uid://byfe57hgm7b7o"]
 
 [ext_resource type="PackedScene" uid="uid://ddgirowxv150l" path="res://Scenes/Limit/Limit.tscn" id="1_iqdi0"]
 
 [node name="Limit" instance=ExtResource("1_iqdi0")]
 scale = Vector2(0.5, 0.5)
 maxScale = Vector2(1.33, 1.33)
-isDashThrough = true

@@ -45,7 +45,6 @@ public partial class WorldSpawner : Node2D
         Vector2 spawnPosition = GetRandomSpawnPosition(limitSpawnOffset);
         limitsHolder.AddChild(limit);
         limit.GlobalPosition = spawnPosition;
-        limit.isDashThrough = true;
     }
 
     private void SpawnOther()

@@ -11,9 +11,6 @@ minDuration = 2.0
 area = NodePath("Area2D")
 sprite = NodePath("Sprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_v2xsq")
-
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 13
@@ -21,3 +18,7 @@ collision_mask = 13
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(24.5, 24.5)
 shape = SubResource("CircleShape2D_4m4wg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.796875, 0.472656, 0.652344, 1)
+texture = ExtResource("1_v2xsq")

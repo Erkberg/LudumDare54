@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp5wa7fpcb5c4"]
+[gd_scene load_steps=5 format=3 uid="uid://dp5wa7fpcb5c4"]
 
 [ext_resource type="PackedScene" uid="uid://byx46faf55j3e" path="res://Scenes/UI/Ingame/IngameHealthUI.tscn" id="1_pjyga"]
 [ext_resource type="PackedScene" uid="uid://4b7w7mdf4iui" path="res://Scenes/UI/Ingame/IngameTimeUI.tscn" id="2_nesgc"]
 [ext_resource type="PackedScene" uid="uid://cgnvo48ophwv5" path="res://Scenes/UI/Ingame/IngameCoinUI.tscn" id="3_4km8e"]
+[ext_resource type="PackedScene" uid="uid://bwa5d3oj8tf77" path="res://Scenes/UI/Menu/Menu.tscn" id="4_obilj"]
 
 [node name="GameUI" type="CanvasLayer"]
 
@@ -11,3 +12,5 @@
 [node name="IngameTimeUI" parent="." instance=ExtResource("2_nesgc")]
 
 [node name="IngameCoinUI" parent="." instance=ExtResource("3_4km8e")]
+
+[node name="Menu" parent="." instance=ExtResource("4_obilj")]

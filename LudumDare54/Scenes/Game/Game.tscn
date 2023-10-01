@@ -3,16 +3,16 @@
 [ext_resource type="Script" path="res://Scenes/Game/Game.cs" id="1_5jwd5"]
 [ext_resource type="Script" path="res://Scenes/Game/GameInput.cs" id="2_duqr1"]
 [ext_resource type="Script" path="res://Scenes/Game/GameRefs.cs" id="3_e777b"]
-[ext_resource type="Script" path="res://Scenes/Game/GameProgress.cs" id="4_cq6li"]
 [ext_resource type="Script" path="res://Scenes/Game/GameState.cs" id="5_3pscq"]
 [ext_resource type="Script" path="res://Scenes/Game/GameAudio.cs" id="6_4gpri"]
+[ext_resource type="Script" path="res://Scenes/Game/GameStats.cs" id="6_pwepg"]
 
-[node name="Game" type="Node" node_paths=PackedStringArray("progress", "input", "refs", "state")]
+[node name="Game" type="Node" node_paths=PackedStringArray("input", "refs", "state", "stats")]
 script = ExtResource("1_5jwd5")
-progress = NodePath("Progress")
 input = NodePath("Input")
 refs = NodePath("Refs")
 state = NodePath("State")
+stats = NodePath("Stats")
 
 [node name="Input" type="Node" parent="."]
 script = ExtResource("2_duqr1")
@@ -20,16 +20,16 @@ script = ExtResource("2_duqr1")
 [node name="Refs" type="Node" parent="."]
 script = ExtResource("3_e777b")
 
-[node name="Progress" type="Node" parent="." node_paths=PackedStringArray("timer")]
-script = ExtResource("4_cq6li")
+[node name="State" type="Node" parent="." node_paths=PackedStringArray("timer")]
+script = ExtResource("5_3pscq")
 timer = NodePath("Timer")
 
-[node name="Timer" type="Timer" parent="Progress"]
+[node name="Timer" type="Timer" parent="State"]
 wait_time = 4096.0
 autostart = true
 
-[node name="State" type="Node" parent="."]
-script = ExtResource("5_3pscq")
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("6_pwepg")
 
 [node name="Audio" type="Node" parent="." node_paths=PackedStringArray("soundPlayer")]
 script = ExtResource("6_4gpri")

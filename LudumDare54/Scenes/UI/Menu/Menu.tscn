@@ -1,0 +1,129 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwa5d3oj8tf77"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Menu/Menu.cs" id="1_ojbg5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vw32g"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_mxccs"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_dssdw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gmkw4"]
+font_size = 10
+
+[node name="Menu" type="MarginContainer" node_paths=PackedStringArray("startButton", "container", "highscoreTimeLabel", "highscoreCoinsLabel")]
+self_modulate = Color(1, 0, 1, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ojbg5")
+startButton = NodePath("Container/Contents/VBoxContainer/StartButton")
+container = NodePath("Container")
+highscoreTimeLabel = NodePath("Container/Contents/VBoxContainer/HighscoreDurationLabel")
+highscoreCoinsLabel = NodePath("Container/Contents/VBoxContainer/HighscoreCoinsLabel")
+
+[node name="Container" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="Background" type="ColorRect" parent="Container"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="Contents" type="MarginContainer" parent="Container"]
+layout_mode = 2
+theme_override_constants/margin_top = 72
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/Contents"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Container/Contents/VBoxContainer"]
+layout_mode = 2
+text = "Full Circle"
+label_settings = SubResource("LabelSettings_vw32g")
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="Container/Contents/VBoxContainer"]
+layout_mode = 2
+text = "A game by Erkberg
+Created within 48h for Ludum Dare 54 (Theme: Limited space)
+
+"
+label_settings = SubResource("LabelSettings_mxccs")
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="Container/Contents/VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Start game"
+
+[node name="HowToPlayLabel" type="Label" parent="Container/Contents/VBoxContainer"]
+layout_mode = 2
+text = "
+How to play"
+label_settings = SubResource("LabelSettings_dssdw")
+horizontal_alignment = 1
+
+[node name="MoveLabel" type="Label" parent="Container/Contents/VBoxContainer"]
+layout_mode = 2
+text = "Move = Left stick / WASD / Arrows"
+horizontal_alignment = 1
+
+[node name="DashLabel" type="Label" parent="Container/Contents/VBoxContainer"]
+layout_mode = 2
+text = "Dash = Any controller button / Space"
+horizontal_alignment = 1
+
+[node name="YouLabel" type="Label" parent="Container/Contents/VBoxContainer"]
+self_modulate = Color(0, 0.615686, 0.45098, 1)
+layout_mode = 2
+text = "Green Square = You"
+horizontal_alignment = 1
+
+[node name="CoinLabel" type="Label" parent="Container/Contents/VBoxContainer"]
+self_modulate = Color(0.9375, 0.890625, 0.257813, 1)
+layout_mode = 2
+text = "Yellow Circle = Collect"
+horizontal_alignment = 1
+
+[node name="DamageLabel" type="Label" parent="Container/Contents/VBoxContainer"]
+self_modulate = Color(0.796875, 0.472656, 0.652344, 1)
+layout_mode = 2
+text = "Pink Ring & Diamond = Hurt"
+horizontal_alignment = 1
+
+[node name="DeathLabel" type="Label" parent="Container/Contents/VBoxContainer"]
+self_modulate = Color(0.832031, 0.367188, 0, 1)
+layout_mode = 2
+text = "Orange Border = Death"
+horizontal_alignment = 1
+
+[node name="HighscoreLabel" type="Label" parent="Container/Contents/VBoxContainer"]
+layout_mode = 2
+text = "
+Highscore"
+horizontal_alignment = 1
+
+[node name="HighscoreDurationLabel" type="Label" parent="Container/Contents/VBoxContainer"]
+layout_mode = 2
+text = "0:00"
+horizontal_alignment = 1
+
+[node name="HighscoreCoinsLabel" type="Label" parent="Container/Contents/VBoxContainer"]
+self_modulate = Color(0.9375, 0.890625, 0.257813, 1)
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="NotSavedLLabel" type="Label" parent="Container/Contents/VBoxContainer"]
+layout_mode = 2
+text = "(not saved upon exiting the game)"
+label_settings = SubResource("LabelSettings_gmkw4")
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Container/Contents/VBoxContainer"]
+layout_mode = 2

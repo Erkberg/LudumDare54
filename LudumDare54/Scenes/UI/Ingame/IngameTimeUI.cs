@@ -5,13 +5,13 @@ public partial class IngameTimeUI : MarginContainer
 {
     [Export] private Label timeLabel;
 
-    private GameProgress progress;
+    private GameState state;
 
     private const string SecondsFormat = "00";
 
     public override void _Ready()
     {
-        progress = Game.inst.progress;
+        state = Game.inst.state;
     }
 
     public override void _Process(double delta)
@@ -21,11 +21,11 @@ public partial class IngameTimeUI : MarginContainer
 
     private void UpdateTimeUI()
     {
-        double timeElapsed = progress.GetTimeElapsed();
+        double timeElapsed = state.GetTimeElapsed();
         timeLabel.Text = GetFormattedTimeString(timeElapsed);
     }
 
-    private string GetFormattedTimeString(double seconds)
+    public static string GetFormattedTimeString(double seconds)
     {
         double minutes = Mathf.Floor(seconds / 60);
         double remainingSeconds = seconds - (minutes * 60);

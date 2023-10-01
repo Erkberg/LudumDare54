@@ -84,16 +84,22 @@ layout_mode = 2
 text = "Green Square = You"
 horizontal_alignment = 1
 
+[node name="YouLabel2" type="Label" parent="Container/Contents/VBoxContainer"]
+self_modulate = Color(0, 0.615686, 0.45098, 1)
+layout_mode = 2
+text = "Green Bar depleted = Death"
+horizontal_alignment = 1
+
 [node name="CoinLabel" type="Label" parent="Container/Contents/VBoxContainer"]
 self_modulate = Color(0.9375, 0.890625, 0.257813, 1)
 layout_mode = 2
-text = "Yellow Circle = Collect"
+text = "Yellow Circle = Collect to extend"
 horizontal_alignment = 1
 
 [node name="DamageLabel" type="Label" parent="Container/Contents/VBoxContainer"]
 self_modulate = Color(0.796875, 0.472656, 0.652344, 1)
 layout_mode = 2
-text = "Pink Ring & Diamond = Hurt & Dash-through"
+text = "Pink Rings, Lines & Diamonds = Hurt & Dash-through"
 horizontal_alignment = 1
 
 [node name="DeathLabel" type="Label" parent="Container/Contents/VBoxContainer"]

@@ -27,26 +27,23 @@ scale = Vector2(0.5, 1.5)
 minScale = Vector2(0.33, 1.5)
 maxScale = Vector2(1, 2)
 
-[node name="LimitEast" parent="World/Limits" node_paths=PackedStringArray("area") instance=ExtResource("5_6ss2x")]
+[node name="LimitEast" parent="World/Limits" instance=ExtResource("5_6ss2x")]
 position = Vector2(640, 0)
 scale = Vector2(0.5, 1.5)
 minScale = Vector2(0.33, 1.5)
 maxScale = Vector2(1, 2)
-area = NodePath("../LimitWest/Area2D")
 
-[node name="LimitNorth" parent="World/Limits" node_paths=PackedStringArray("area") instance=ExtResource("5_6ss2x")]
+[node name="LimitNorth" parent="World/Limits" instance=ExtResource("5_6ss2x")]
 position = Vector2(0, -360)
 scale = Vector2(2.5, 0.33)
 minScale = Vector2(2.5, 0.33)
 maxScale = Vector2(3.33, 1)
-area = NodePath("../LimitWest/Area2D")
 
-[node name="LimitSouth" parent="World/Limits" node_paths=PackedStringArray("area") instance=ExtResource("5_6ss2x")]
+[node name="LimitSouth" parent="World/Limits" instance=ExtResource("5_6ss2x")]
 position = Vector2(0, 360)
 scale = Vector2(2.5, 0.33)
 minScale = Vector2(2.5, 0.33)
 maxScale = Vector2(3.33, 1)
-area = NodePath("../LimitWest/Area2D")
 
 [node name="Borders" type="Node2D" parent="World"]
 

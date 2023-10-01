@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ouxij"]
 radius = 48.0
 
-[node name="Other" type="CharacterBody2D" node_paths=PackedStringArray("area", "scanArea", "moveTimer", "rayCast")]
+[node name="Other" type="CharacterBody2D" node_paths=PackedStringArray("area", "scanArea", "moveTimer")]
 collision_layer = 4
 collision_mask = 11
 motion_mode = 1
@@ -16,7 +16,6 @@ script = ExtResource("1_fu8lh")
 area = NodePath("Area2D")
 scanArea = NodePath("ScanArea")
 moveTimer = NodePath("MoveTimer")
-rayCast = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0.796875, 0.472656, 0.652344, 1)

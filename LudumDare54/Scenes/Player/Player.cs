@@ -6,13 +6,16 @@ public partial class Player : CharacterBody2D
     [Export] private float moveSpeed = 160;
     [Export] private float dashMultiplier = 4;
     [Export] private float accelerationSmoothing = 16;
+    [Export] private int invinciblityFrames = 8;
     [Export] private Timer dashTimer;
     [Export] private Area2D area;
     [Export] private HealthComponent healthComponent;
+    [Export] private Sprite2D sprite;
 
     private GameInput input;
     private Vector2 currentDirection;
     private bool isDashing;
+    private bool isInvincible;
 
     public override void _Ready()
     {
@@ -21,6 +24,7 @@ public partial class Player : CharacterBody2D
 
         dashTimer.Timeout += OnDashTimer;
         area.AreaEntered += OnAreaEntered;
+        area.AreaExited += OnAreaExited;
         healthComponent.Died += Die;
     }
 
@@ -75,9 +79,8 @@ public partial class Player : CharacterBody2D
     {
         Node otherParent = other.GetParent();
         GD.Print(otherParent.Name);
-        if (otherParent is Limit)
+        if (other is LimitAreaOuter && (otherParent as Limit).CanHurt())
         {
-            Limit otherLimit = otherParent as Limit;
             if(!isDashing)
             {
                 OnEnterDamage(other.GlobalPosition, 64f);
@@ -107,10 +110,26 @@ public partial class Player : CharacterBody2D
         }
     }
 
+    private void OnAreaExited(Area2D other)
+    {
+        Node otherParent = other.GetParent();
+        if (other is LimitAreaInner && (otherParent as Limit).CanHurt())
+        {
+            if (!isDashing)
+            {
+                OnEnterDamage(other.GlobalPosition, 64f);
+            }
+        }
+    }
+
     private void OnEnterDamage(Vector2 otherPosition, float knockback)
     {
         //Knockback(otherPosition, knockback);
+        if (isInvincible)
+            return;
+
         healthComponent.TakeDamage(1);
+        InvincibleSequence();
     }
 
     private void Knockback(Vector2 otherPosition, float knockback)
@@ -130,5 +149,20 @@ public partial class Player : CharacterBody2D
     public float GetHealth()
     {
         return healthComponent.currentHealth;
+    }
+
+    private async void InvincibleSequence()
+    {
+        isInvincible = true;
+
+        for (int i = 0; i < invinciblityFrames; i++) 
+        {
+            sprite.Visible = false;
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+            sprite.Visible = true;
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        }
+
+        isInvincible = false;
     }
 }

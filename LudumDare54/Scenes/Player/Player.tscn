@@ -6,13 +6,15 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gatow"]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("dashTimer", "area", "healthComponent")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("dashTimer", "area", "healthComponent", "sprite")]
 motion_mode = 1
 script = ExtResource("1_yqcgu")
 moveSpeed = 240.0
+invinciblityFrames = 10
 dashTimer = NodePath("DashTimer")
 area = NodePath("Area2D")
 healthComponent = NodePath("HealthComponent")
+sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0.617188, 0.449219, 1)

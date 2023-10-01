@@ -5,29 +5,22 @@ public partial class Limit : Node2D
 {
     [Export] public Vector2 minScale = Vector2.One * 0.5f, maxScale = Vector2.One * 1.5f;
     [Export] public double minDuration = 1.33, maxDuration = 3.33;
-    [Export] private Area2D area;
     [Export] private Sprite2D sprite;
+    [Export] private Timer activeTimer;
     [Export] public bool randomizeScaleEachTween = false;
     [Export] public bool randomizeDurationEachTween = true;
 
     private int scaleDir = 0;
+    private bool isActive;
 
     private const string ScaleTweenProperty = "scale";
 
     public override void _Ready()
     {
-        area.AreaEntered += OnAreaEntered;
+        activeTimer.Timeout += () => isActive = true;
+
         scaleDir = GD.Randf() < 0.5 ? 1 : -1;
         StartTween();
-    }
-
-    private void OnAreaEntered(Area2D other)
-    {
-        Node otherParent = other.GetParent();
-        if(otherParent is Player)
-        {
-            
-        }
     }
 
     private void StartTween()
@@ -45,5 +38,10 @@ public partial class Limit : Node2D
     private void OnTweenEnded()
     {
         StartTween();
+    }
+
+    public bool CanHurt()
+    {
+        return isActive;
     }
 }

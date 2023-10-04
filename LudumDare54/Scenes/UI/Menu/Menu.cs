@@ -11,6 +11,7 @@ public partial class Menu : MarginContainer
     public override void _Ready()
     {
         startButton.Pressed += OnStartButtonPressed;
+        startButton.GrabFocus();
 
         highscoreTimeLabel.Text = IngameTimeUI.GetFormattedTimeString(Game.inst.stats.highscoreDuration);
         highscoreCoinsLabel.Text = Game.inst.stats.highscoreCoins.ToString();

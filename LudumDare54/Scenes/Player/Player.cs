@@ -113,12 +113,21 @@ public partial class Player : CharacterBody2D
         {
             if(!isDashing)
             {
-                GD.Print(otherParent.Name);
+                GD.Print(otherParent.Name + " - " + other.Name);
                 OnEnterDamage(other.GlobalPosition, 64f);
             }            
         }
 
-        if(otherParent is Other)
+        if (other is LimitArea && (otherParent as Limit).CanHurt())
+        {
+            if (!isDashing)
+            {
+                GD.Print(otherParent.Name + " - " + other.Name);
+                OnEnterDamage(other.GlobalPosition, 64f);
+            }
+        }
+
+        if (otherParent is Other)
         {
             OnEnterDamage(other.GlobalPosition, 16f);
             // (otherParent as Other).Die();

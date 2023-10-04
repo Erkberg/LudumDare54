@@ -48,7 +48,7 @@ horizontal_alignment = 1
 
 [node name="SubtitleLabel" type="Label" parent="Container/Contents/VBoxContainer"]
 layout_mode = 2
-text = "A game by Erkberg
+text = "A minimalist arcade game by Erkberg
 Created within 48h for Ludum Dare 54 (Theme: Limited space)
 
 "
